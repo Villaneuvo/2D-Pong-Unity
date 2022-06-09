@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     public Vector2 speed;
     private Rigidbody2D rig;
+    public Vector2 resetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +20,10 @@ public class BallController : MonoBehaviour
     {
         // transform.position = transform.position + (new Vector3(0, 1f, 0) * Time.deltaTime);
         // transform.Translate(speed * Time.deltaTime);
+    }
+
+    public void ResetBall()
+    {
+        transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
     }
 }
