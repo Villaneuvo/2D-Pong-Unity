@@ -45,4 +45,20 @@ public class PaddleController : MonoBehaviour
         Debug.Log("Test: " + movement);
         rig.velocity = movement;
     }
+
+    public void SpeedUpPadle(){
+        speed *= 2;
+    }
+
+    public void ResetSpeedPadle(){
+        speed /= 2;
+    }
+
+    public void ScaleUp(GameObject paddle){
+        paddle.transform.localScale += new Vector3(0, paddle.transform.localScale.y, 0);
+    }
+
+    public void ScaleDown(GameObject paddle){
+        paddle.transform.localScale -= new Vector3(0, paddle.transform.localScale.y/2, 0);
+    }
 }

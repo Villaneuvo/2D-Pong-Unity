@@ -14,4 +14,12 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Created by Muhammad Daffa 149251970100-9");
     }
+    
+    public void OpenCredit(){
+        SceneManager.LoadScene("Credit");
+    }
+
+    public void OpenMenu(){
+        SceneManager.LoadScene("Main Menu");
+    }
 }

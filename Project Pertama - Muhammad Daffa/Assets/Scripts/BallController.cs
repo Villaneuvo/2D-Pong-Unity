@@ -8,6 +8,8 @@ public class BallController : MonoBehaviour
     private Rigidbody2D rig;
     public Vector2 resetPosition;
 
+    public bool isLeft = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +31,9 @@ public class BallController : MonoBehaviour
 
     public void ActivatePUSpeedUp(float magnitude){
         rig.velocity *= magnitude;
+    }
+
+    public void ResetSpeedBall(float magnitude){
+        rig.velocity /= magnitude;
     }
 }
