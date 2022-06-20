@@ -15,6 +15,25 @@ public class PowerUpManager : MonoBehaviour
     private List<GameObject> powerUpList;
     private float timer;
 
+    public GameObject ball;
+    public float ballMagnitude;
+    float BallSpeedDuration;
+    public bool activationBallSpeed;
+    public GameObject padelKiri;
+    public GameObject padelKanan;
+
+    float timeScaleUpPadLeft;
+    float timeSpeedUpPadLeft;
+    float timeScaleUpPadRight;
+    float timeSpeedUpPadRight;
+
+    public bool isActiveScaleUpPadLeft = false;
+    public bool isActiveSpeedUpPadLeft = false;
+    public bool isActiveScaleUpPadRight = false;
+    public bool isActiveSpeedUpPadRight = false;
+
+    public float DeleteInterval;
+
     private void Start()
     {
         powerUpList = new List<GameObject>();
@@ -29,6 +48,62 @@ public class PowerUpManager : MonoBehaviour
         {
             GenerateRandomPowerUp();
             timer -= spawnInterval;
+        }
+         //Durasi Buff BallSpeedUp
+        if (activationBallSpeed == true)
+        {
+            if (BallSpeedDuration >= 5)
+            {
+                ball.GetComponent<BallController>().ResetSpeedBall(ballMagnitude);
+                activationBallSpeed = false;
+                BallSpeedDuration -= 5;
+            }
+            BallSpeedDuration += Time.deltaTime;
+        }
+
+        // Scale Left Pad Up Buff
+        if (isActiveScaleUpPadLeft == true)
+        {
+            if (timeScaleUpPadLeft >= 5)
+            {
+                padelKiri.GetComponent<PaddleController>().ScaleDown(padelKiri);
+                isActiveScaleUpPadLeft = false;
+                timeScaleUpPadLeft -= 5;
+            }
+            timeScaleUpPadLeft += Time.deltaTime;
+        }
+        //Durasi Buff SpeedUp padelKiri
+        if (isActiveSpeedUpPadLeft == true)
+        {
+            if (timeSpeedUpPadLeft>= 5)
+            {
+                padelKiri.GetComponent<PaddleController>().ResetSpeedPadle();
+                isActiveSpeedUpPadLeft = false;
+                timeSpeedUpPadLeft -= 5;
+            }
+            timeSpeedUpPadLeft += Time.deltaTime;
+        }
+        //Durasi Buff ScalepadelKanan
+        if (isActiveScaleUpPadRight == true)
+        {
+            if (timeScaleUpPadRight >= 5)
+            {
+                padelKanan.GetComponent<PaddleController>().ScaleDown(padelKanan);
+                isActiveScaleUpPadRight = false;
+                timeScaleUpPadRight -= 5;
+            }
+            timeScaleUpPadRight += Time.deltaTime;
+        }
+        //Durasi Buff SpeedUp PadKanan
+        if (isActiveSpeedUpPadLeft == true)
+        {
+            if (timeSpeedUpPadRight >= 5)
+            {
+                padelKanan.GetComponent<PaddleController>().ResetSpeedPadle();
+                isActiveSpeedUpPadRight = false;
+                timeSpeedUpPadRight -= 5;
+            }
+            timeSpeedUpPadRight += Time.deltaTime;
         }
     }
 
